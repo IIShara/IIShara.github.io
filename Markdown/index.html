@@ -52,16 +52,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_2">Заголовки</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#3">Заголовок 3 уровня</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#4">Заголовок 4 уровня</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#5">Заголовок 5 уровня</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#_3">Работа с выделением текста</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#emoji">Использование эмодзи (emoji)</a>
@@ -113,22 +103,28 @@
 <h3 id="_1">Разделительная черта</h3>
 <pre><code>---
 </code></pre>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_2">Заголовки</h3>
-<h3 id="3">Заголовок 3 уровня</h3>
+<pre><code># Заголовок 1
+</code></pre>
+<p>или</p>
+<pre><code>Заголовок 1
+===========
+</code></pre>
+<pre><code>## Заголовок 2
+</code></pre>
+<p>или</p>
+<pre><code>Заголовок 2
+-----------
+</code></pre>
 <pre><code>### Заголовок 3
 </code></pre>
-<h4 id="4">Заголовок 4 уровня</h4>
 <pre><code>#### Заголовок 4
 </code></pre>
-<h5 id="5">Заголовок 5 уровня</h5>
 <pre><code>##### Заголовок 5
 </code></pre>
-<h6 id="6">Заголовок 6 уровня</h6>
 <pre><code>###### Заголовок 6
 </code></pre>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_3">Работа с выделением текста</h3>
 <pre><code>~~Зачеркнутый текст~~
@@ -156,7 +152,6 @@
 <pre><code>~~*__Тут странный текст__*~~
 </code></pre>
 <p>~~<em><strong>Тут странный текст</strong></em>~~</p>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="emoji">Использование эмодзи (emoji)</h3>
 <blockquote>
@@ -171,7 +166,6 @@
 :negative_squared_cross_mark:    
 :black_square_button:  
 </code></pre>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_4">Использование цитирования в тексте</h3>
 <pre><code>&gt; Цитата (уровень 1)    
@@ -194,7 +188,6 @@
 <p>Продолжение цитаты (уровень 1)</p>
 </blockquote>
 <p>Внешний вид, конечно, не очень, но может и пригодиться.</p>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_5">Подсветка кода</h3>
 <p>Если нужно выделить слово или фразу внутри строки, то используются одинарные обратные кавычки (`):</p>
@@ -248,7 +241,6 @@ namespace Example
 
 print(factorial(10)) # 3628800
 </code></pre>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_6">Списки</h3>
 <p><strong>Маркированный</strong><br />
@@ -453,7 +445,6 @@ print(factorial(10)) # 3628800
 </ul>
 </li>
 </ul>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_9">Ссылки</h3>
 <p>Либо просто вставить ссылку, либо дополнительно задать текст ссылки (пробела между скобками быть не должно):</p>
@@ -464,17 +455,15 @@ print(factorial(10)) # 3628800
 <pre><code>[example.com](http://example.com)
 </code></pre>
 <p><a href="http://example.com">example.com</a></p>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_10">Вставка изображения</h3>
 <pre><code>![Alt-текст](https://example.com &quot;alt&quot;)
 </code></pre>
 <p>Дополнительно:
 Вставка ссылки с картинкой на ролик с YouTube
-Описание комбинации <code><a href="ссылка на страничку YouTube"><img alt="Тут текст" src="адрес до картинки" /></a><code>
+Описание комбинации <code>[![Тут текст](адрес до картинки)](ссылка на страничку YouTube)</code>
 Пример:</p>
 <p><a href="https://youtu.be/example"><img alt="Тут текст" src="https://img.youtube.com/" /></a></p>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
 <hr />
 <h3 id="_11">Вставка таблиц</h3>
 <pre><code>| LEFT | CENTER | RIGHT |
@@ -533,7 +522,6 @@ print(factorial(10)) # 3628800
 </tr>
 </tbody>
 </table>
-<p><a href="#оглавление">⬆️Оглавление</a></p>
               
             </div>
           </div><footer>
