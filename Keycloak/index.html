@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/Readme/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/Keycloak/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Ilgiz Sharafeev - Личная документация</title>
+    <title>Keycloak - Личная документация</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Ilgiz Sharafeev";
-        var mkdocs_page_input_path = "Readme.md";
-        var mkdocs_page_url = "/Readme/";
+        var mkdocs_page_name = "Keycloak";
+        var mkdocs_page_input_path = "Keycloak.md";
+        var mkdocs_page_url = "/Keycloak/";
       </script>
     
     <!--[if lt IE 9]>
@@ -52,8 +52,14 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Инструкции</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../Keycloak/">Keycloak</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Keycloak</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#docker">Установка в Docker</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Получение доступа к серверу</a>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -70,7 +76,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Ilgiz Sharafeev</li>
+          <li class="breadcrumb-item">Инструкции</li>
+      <li class="breadcrumb-item active">Keycloak</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -79,10 +86,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="ilgiz-sharafeev">Ilgiz Sharafeev</h1>
+                <h1 id="keycloak">Keycloak</h1>
+<h2 id="docker">Установка в Docker</h2>
+<p><strong>1. Запуск уонтейнера docker</strong></p>
+<pre><code class="language-shell">docker run -d \
+  --net keycloak-network \
+  --name keycloak \
+  -e KEYCLOAK_USER=admin \
+  -e KEYCLOAK_PASSWORD=StrongPassw0rd \
+  -p 8080:8080 \
+  -p 8443:8443 \
+  -e KEYCLOAK_DB=postgres \
+  -e KEYCLOAK_FEATURES=token-exchange \
+  -e KEYCLOAK_DB_URL=jdbc:postgresql://db/keycloakdb \
+  -e KEYCLOAK_DB_USERNAME=admin \
+  -e KEYCLOAK_DB_PASSWORD=Passw0rd \
+  jboss/keycloak
+</code></pre>
+<ol>
+<li>Проверка сосотяния</li>
+</ol>
+<pre><code class="language-shell">$ docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED             STATUS             PORTS                                                                                  NAMES
+a910a9eaa5e1   jboss/keycloak    &quot;/opt/jboss/tools/do…&quot;   5 seconds ago       Up 4 seconds       0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp, 0.0.0.0:8443-&gt;8443/tcp, :::8443-&gt;8443/tcp   keycloak
+8f5e593eb517   postgres:latest   &quot;docker-entrypoint.s…&quot;   About an hour ago   Up About an hour   5432/tcp                                                                               db
+</code></pre>
+<h2 id="_1">Получение доступа к серверу</h2>
+<p>Доступ к Keycloak по URL-адресу https://IP_адрес:8443. Войдите в систему, используя имя пользователя, указанное в переменных среды Docker</p>
+<p><img alt="Окно входа в Keycloak" src="../img/keycloak_authform.png" /></p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Git/" class="btn btn-neutral float-left" title="Основные команды Git"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 
@@ -103,6 +140,8 @@
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
+    
+      <span><a href="../Git/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
