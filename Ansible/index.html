@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/Ansible/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Ansible - Личная документация</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ansible";
+        var mkdocs_page_input_path = "Ansible.md";
+        var mkdocs_page_url = "/Ansible/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Личная документация
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Заметки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Markdown/">Синтаксис Markdown</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Git/">Основные команды Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Инструкции</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Keycloak/">Keycloak</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Prometheus/">Prometheus</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Ansible</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Установка</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ansible-linux">Установка ansible на Linux</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">Установка и обновление коллекций</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ansible_1">Начальная настройка и тестовый запуск Ansible</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Настройка инвентарного файла</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ansible_2">Настройка ansible</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Тестовый запуск</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Подключение без пароля</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Использование плейбуков</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Личная документация</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Инструкции</li>
+      <li class="breadcrumb-item active">Ansible</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ansible">Ansible</h1>
+<h2 id="_1">Установка</h2>
+<p>Выполним как саму установку ansible, так и дополнительные коллекции.</p>
+<h3 id="ansible-linux">Установка ansible на Linux</h3>
+<p>Установка для различных дистрибутивов Linux выполняется, немного, по-разному. Рассмотрим варианты.</p>
+<p><strong>Ubuntu / Debian / Astra</strong></p>
+<p>Выполняем команды:</p>
+<pre><code class="language-shell">apt update
+</code></pre>
+<pre><code class="language-shell">apt install ansible
+</code></pre>
+<p><strong>CentOS / Rocky</strong></p>
+<p>По умолчанию Ansible нет в репозитории CentOS — устанавливаем EPEL:</p>
+<pre><code class="language-shell">yum install epel-release
+</code></pre>
+<p>После устанавливаем сам сервер управления:</p>
+<pre><code class="language-shell">yum install ansible
+</code></pre>
+<p>* <em>система автоматически обновит список пакетов с учетом нового репозитория и начнет установку Ansible. Если появится запрос на подтверждение, отвечаем Y.</em></p>
+<p><strong>РЕД ОС</strong>
+Устанавливаем ансибл командой:</p>
+<pre><code class="language-shell">dnf install ansible
+</code></pre>
+<h3 id="_2">Установка и обновление коллекций</h3>
+<p>Рекомендуется сразу установить или обновить стандартные коллекции для задач Ansible:</p>
+<pre><code class="language-shell">ansible-galaxy collection install community.general
+</code></pre>
+<h2 id="ansible_1">Начальная настройка и тестовый запуск Ansible</h2>
+<p>Разобьем наши действия на небольшие группы.</p>
+<h3 id="_3">Настройка инвентарного файла</h3>
+<p>В данном файле хранится информация о хостах и/или группах хостов. Также в нем может храниться переменные, определенные для конкретной группы хостов или конкретного компьютера.</p>
+<p>Есть два варианта написания инвентарного файла — в формате yml или ini. Рассмотрим оба.</p>
+<p><strong>1. Файл формата ini.</strong></p>
+<p>Даннай формат используется по умолчанию. Откроем на редактирование файл с серверами, которыми хотим управлять:</p>
+<pre><code class="language-shell">vi /etc/ansible/hosts
+</code></pre>
+<p>и приведем его к следующему виду:</p>
+<pre><code class="language-vim">[test_servers]
+192.168.1.100
+192.168.1.101
+</code></pre>
+<p>* <em>в данном примере создана группа серверов test_servers, в которую добавлены два сервера с IP-адресами 192.168.1.100 и 192.168.1.101.</em></p>
+<p><strong>2. Файл формата yml.</strong></p>
+<p>Создадим отдельный каталог:</p>
+<pre><code class="language-shell">mkdir /etc/ansible/inventory
+</code></pre>
+<p>И создадим файл:</p>
+<pre><code class="language-shell">vi /etc/ansible/inventory/test_servers.yml
+</code></pre>
+<pre><code class="language-vim">---
+
+test_servers:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  hosts:
+    server01:
+      ansible_ssh_host: 192.168.1.100
+      ansible_ssh_port: 22
+    server02:
+      ansible_ssh_host: 192.168.1.101
+      ansible_ssh_port: 22
+    server03:
+      ansible_connection: local
+</code></pre>
+<p>* <em>в данном примере также создана группа серверов test_servers, в которую добавлены три сервера server01 и server02 с IP-адресами 192.168.1.100 и 192.168.1.101, а также server03, который является локальным сервером с типом подключения local. Адреса не обязательно писать, если имя машины разрешается с помощью DNS. Также не обязательно указывать порты, если они стандартные (22).</em></p>
+<p>** <em>обратите внимание, что мы также добавили переменную ansible_python_interpreter с указанием пути для запуска python.</em></p>
+<h2 id="ansible_2">Настройка ansible</h2>
+<p>Открываем конфигурационный файл ansible:</p>
+<pre><code class="language-shell">vi /etc/ansible/ansible.cfg
+</code></pre>
+<p>Для более новых версий ansible конфигурационный файл не создается. Создаем для него каталог и сам файл:</p>
+<pre><code class="language-shell">mkdir /etc/ansible
+</code></pre>
+<pre><code class="language-shell">vi /etc/ansible/ansible.cfg
+</code></pre>
+<p>Снимаем комментарий с опции host_key_checking, приведя ее к виду:</p>
+<pre><code class="language-vim">host_key_checking = False
+</code></pre>
+<p>* <em>данная настройка позволит нашему серверу управления автоматически принимать ssh fingerprint, избавляя нас от необходимости постоянно вводить yes, когда мы впервые конфигурируем новый сервер.</em></p>
+<p>Также в секцию <code>defaults</code> добавим:</p>
+<pre><code class="language-vim">[defaults]
+...
+interpreter_python = auto_silent
+</code></pre>
+<p>* <em>данная опция указывает, чтобы ansible автоматически искал python на целевом хосте без показа предупреждений.</em></p>
+<h2 id="_4">Тестовый запуск</h2>
+<p>Теперь выполним проверку доступности добавленных серверов:</p>
+<pre><code class="language-shell">ansible -m ping test_servers -u root -kK
+</code></pre>
+<p>* <em>данная команда проверит доступность по сети двух серверов из группы test_servers от учетной записи root.</em></p>
+<blockquote>
+<ol>
+<li>
+<p>Если мы создали и хотим использовать инвентарный файл yml, то вводим:
+<code>shell
+ansible -i /etc/ansible/inventory/test_servers.yml -m ping test_servers -u root -kK</code>
+* <em>мы должны указать путь до файла inventory с помощью опции -i.</em></p>
+</li>
+<li>
+<p>Если мы хотим выполнить сценарий, подключившись к локальному компьютеру, то выполняем:
+<code>shell
+ansible -m ping localhost --connection=local</code>
+Если подключение не local, будет запрошен пароль от учетной записи (в нашем случае, root). После будет запрошен пароль суперпользователя на серверах.</p>
+</li>
+</ol>
+</blockquote>
+<p>На экране должно появиться, примерно, следующее:</p>
+<pre><code class="language-shell">192.168.1.100 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python3&quot;
+    },
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+192.168.1.101 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    },
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+</code></pre>
+<p>Наш сервер управления готов к работе.</p>
+<h2 id="_5">Подключение без пароля</h2>
+<p>В нашем примере аутентификация на узлах выполняется с помощью пароля. Это не очень удобно и безопасно. Рассмотрим вариант использования ssh ключа.</p>
+<p>На компьютере с <code>ansible</code> сгенерируем пару ключей следующей командой:</p>
+<pre><code class="language-shell">ssh-keygen -t ed25519
+</code></pre>
+<p>После нажатия <em>Enter</em> система попросит ввести параметры размещения ключа и пароль. Ничего не меняем, нажимая ввод и соглашаясь со значениями по умолчанию.</p>
+<p>Мы увидим что-то на подобие:</p>
+<pre><code class="language-shell">Generating public/private ed25519 key pair.
+Enter file in which to save the key (/root/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_ed25519
+Your public key has been saved in /root/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:FTDGR6Gz92WI33/ywMSImcqfx2IRQjrD20tE/qzqZ5Y root@ansible.dmosk.ru
+The key's randomart image is:
++--[ED25519 256]--+
+|       .+o+.     |
+|       .+o..     |
+|     . =o..      |
+|      = ++.= +   |
+|       *S+*.o =  |
+|      ..oo+o *   |
+|       .o+ oo +  |
+|        E.o.o .o.|
+|     .o= .oo   o+|
++----[SHA256]-----+
+</code></pre>
+<p>* <em>обратите внимание, что мы сгенерировали ключи под пользователем root и из местоположение в каталоге </em>/root/.ssh.**</p>
+<p>Теперь скопируем публичный ключ на все серверы, к которым будем подключаться:</p>
+<pre><code class="language-shell">ssh-copy-id -i /root/.ssh/id_ed25519.pub root@192.168.1.100
+</code></pre>
+<pre><code class="language-shell">ssh-copy-id -i /root/.ssh/id_ed25519.pub root@192.168.1.101
+</code></pre>
+<p>* <em>в нашем примере мы копируем наш ключ для пользователя root на удаленной системе.</em></p>
+<blockquote>
+<p>Мы также можем скопировать ключ вручную. Для этого содержимое публичного файла (в нашем случае, &gt;<code>id_ed25519.pub</code>) добавить в файл <code>authorized_keys</code> для нужного пользователя. Например:
+<code>shell
+mkdir /root/.ssh</code>
+<code>shell
+vi /root/.ssh/authorized_keys</code>
+* <em>в данном примере мы сможем подключиться к компьютеру с нашим сертификатом под пользователм root.</em></p>
+</blockquote>
+<p>Готово. Попробуем подключиться по SSH без пароля к любому из серверов:</p>
+<pre><code class="language-shell">ssh root@192.168.1.100
+</code></pre>
+<p>Мы должны подключиться к серверу без запроса пароля.</p>
+<p>Теперь можно попробовать запустить наш ансибл без ввода паролей:</p>
+<pre><code class="language-shell">ansible -m ping test_servers -u root
+</code></pre>
+<blockquote>
+<p>Или с использованием инвентарного файла yml:
+<code>shell
+ansible -i /etc/ansible/inventory/test_servers.yml -m ping test_servers -u root</code>
+Команда должна выполниться без запросов пароля.</p>
+</blockquote>
+<h2 id="_6">Использование плейбуков</h2>
+<p>Плейбук представляет из себя файл, в котором мы перечисляем список задач и/или ролей для выполнения ансиблом. Более того, в нем можно задать переменные и поведение работы ansible. Рассмотрим пример:</p>
+<pre><code class="language-shell">vi my_play.yml
+</code></pre>
+<pre><code class="language-vim">- hosts: all
+  gather_facts: yes
+  user: root
+  vars:
+    app_ver: 14
+  roles:
+    - role: prepare
+    - role: install
+    - role: settings
+
+- hosts: server1
+  gather_facts: no
+  user: root
+  tasks:
+    - name: install curl
+      package:
+        name: curl
+        state: present
+</code></pre>
+<p>В данном примере мы выполняем 2 блока задач:</p>
+<ol>
+<li>На всех хостах (hosts: all) нашего инвентарного файла запускаются 3 роли (prepare, install, settings). Ansible выполняет сбор фактов (gather_facts: yes), подключение к хостам будет выполняться от пользователя root, а также создается переменная app_ver: 14.</li>
+<li>На узле server1 запускается одна задача по установке пакета curl.</li>
+</ol>
+<p>Теперь запустим плейбук командой:</p>
+<pre><code class="language-shell">ansible-playbook -i /etc/ansible/inventory/test_servers.yml ./my_play.yml
+</code></pre>
+<p>* <em>мы используем созданный ранее инвентарный файл и запускаем плейбук my_play.yml.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Prometheus/" class="btn btn-neutral float-left" title="Prometheus"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Prometheus/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
