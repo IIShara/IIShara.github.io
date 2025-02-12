@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/Keycloak/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/Prometheus/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Keycloak - Личная документация</title>
+    <title>Prometheus - Личная документация</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Keycloak";
-        var mkdocs_page_input_path = "Keycloak.md";
-        var mkdocs_page_url = "/Keycloak/";
+        var mkdocs_page_name = "Prometheus";
+        var mkdocs_page_input_path = "Prometheus.md";
+        var mkdocs_page_url = "/Prometheus/";
       </script>
     
     <!--[if lt IE 9]>
@@ -53,15 +53,17 @@
               </ul>
               <p class="caption"><span class="caption-text">Инструкции</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Keycloak</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../Keycloak/">Keycloak</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Prometheus</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#docker">Установка в Docker</a>
+    <li class="toctree-l2"><a class="reference internal" href="#prometheus-docker-compose">Установка Prometheus в Docker compose</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_1">Получение доступа к серверу</a>
+    <li class="toctree-l2"><a class="reference internal" href="#node-exporter-docker-compose">Установка Node Exporter в Docker compose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#node_exporter-prometheus">Добавление node_exporter в prometheus</a>
     </li>
     </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../Prometheus/">Prometheus</a>
                   </li>
               </ul>
       </div>
@@ -79,7 +81,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Инструкции</li>
-      <li class="breadcrumb-item active">Keycloak</li>
+      <li class="breadcrumb-item active">Prometheus</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -88,40 +90,84 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="keycloak">Keycloak</h1>
-<h2 id="docker">Установка в Docker</h2>
-<p><strong>1. Запуск уонтейнера docker</strong></p>
-<pre><code class="language-shell">docker run -d \
-  --net keycloak-network \
-  --name keycloak \
-  -e KEYCLOAK_USER=admin \
-  -e KEYCLOAK_PASSWORD=StrongPassw0rd \
-  -p 8080:8080 \
-  -p 8443:8443 \
-  -e KEYCLOAK_DB=postgres \
-  -e KEYCLOAK_FEATURES=token-exchange \
-  -e KEYCLOAK_DB_URL=jdbc:postgresql://db/keycloakdb \
-  -e KEYCLOAK_DB_USERNAME=admin \
-  -e KEYCLOAK_DB_PASSWORD=Passw0rd \
-  jboss/keycloak
+                <h1 id="prometheus">Prometheus</h1>
+<h2 id="prometheus-docker-compose">Установка Prometheus в Docker compose</h2>
+<ol>
+<li>Создать файл <code>docker-compose.yml</code>:</li>
+</ol>
+<pre><code class="language-docker">version: &quot;3.9&quot;
+services:
+prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    environment:
+      TZ: &quot;Europe/Moscow&quot;
+    ports:
+      - 9090:9090
+    volumes:
+      - '{{ prometheus_config_dir_host }}:/etc/prometheus'
+      - '{{ prometheus_data_dir_host }}:/prometheus'
 </code></pre>
 <ol>
-<li>Проверка сосотяния</li>
+<li>Запустить <code>docker compose</code>:</li>
 </ol>
-<pre><code class="language-shell">$ docker ps
-CONTAINER ID   IMAGE             COMMAND                  CREATED             STATUS             PORTS                                                                                  NAMES
-a910a9eaa5e1   jboss/keycloak    &quot;/opt/jboss/tools/do…&quot;   5 seconds ago       Up 4 seconds       0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp, 0.0.0.0:8443-&gt;8443/tcp, :::8443-&gt;8443/tcp   keycloak
-8f5e593eb517   postgres:latest   &quot;docker-entrypoint.s…&quot;   About an hour ago   Up About an hour   5432/tcp                                                                               db
+<pre><code class="language-shell">docker compose up
 </code></pre>
-<h2 id="_1">Получение доступа к серверу</h2>
-<p>Доступ к Keycloak по URL-адресу https://IP_адрес:8443. Войдите в систему, используя имя пользователя, указанное в переменных среды Docker</p>
-<p><img alt="Окно входа в Keycloak" src="../img/keycloak_authform.png" /></p>
+<h2 id="node-exporter-docker-compose">Установка Node Exporter в Docker compose</h2>
+<ol>
+<li>Добавить в файл <code>docker-compose.yml</code>:</li>
+</ol>
+<pre><code class="language-docker">node-exporter:
+    image: prom/node-exporter
+    container_name: exporter
+    hostname: exporter
+    restart: unless-stopped
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.ignored-mount-points
+      - ^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)
+    environment:
+      TZ: &quot;Europe/Moscow&quot; 
+    ports:
+      - 9100:9100
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+</code></pre>
+<ol>
+<li>Перезапустить <code>docker compose</code>:</li>
+</ol>
+<pre><code class="language-shell">docker compose up
+</code></pre>
+<ol>
+<li>Проверка, что exporter работает. Открыть в браузере <code>https://IP-address:9100/metrics</code> и должны увидеть:
+<img alt="metrics" src="../img/node_exporter.png" /></li>
+</ol>
+<h2 id="node_exporter-prometheus">Добавление node_exporter в prometheus</h2>
+<p>Экспортеры добавляются в <code>/etc/prometheus/prometheus.yml</code></p>
+<pre><code class="language-vim">global:
+  scrape_interval: 15s
+  scrape_configs:
+    - job_name: 'prometheus'
+      scrape_interval: 5s
+      static_configs:
+        - targets: ['localhost:9090']
+    - job_name: 'prometheus_node'
+      scrape_interval: 5s
+      static_configs:
+        - targets: ['localhost:9100']
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../Git/" class="btn btn-neutral float-left" title="Основные команды Git"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../Prometheus/" class="btn btn-neutral float-right" title="Prometheus">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Keycloak/" class="btn btn-neutral float-left" title="Keycloak"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -144,10 +190,8 @@ a910a9eaa5e1   jboss/keycloak    &quot;/opt/jboss/tools/do…&quot;   5 seconds 
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../Git/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../Keycloak/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../Prometheus/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
