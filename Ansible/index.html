@@ -71,11 +71,11 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#_3">Настройка инвентарного файла</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ansible_2">Настройка ansible</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Тестовый запуск</a>
+    </li>
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ansible_2">Настройка ansible</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">Тестовый запуск</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_5">Подключение без пароля</a>
     </li>
@@ -174,7 +174,7 @@ test_servers:
 </code></pre>
 <p>* <em>в данном примере также создана группа серверов test_servers, в которую добавлены три сервера server01 и server02 с IP-адресами 192.168.1.100 и 192.168.1.101, а также server03, который является локальным сервером с типом подключения local. Адреса не обязательно писать, если имя машины разрешается с помощью DNS. Также не обязательно указывать порты, если они стандартные (22).</em></p>
 <p>** <em>обратите внимание, что мы также добавили переменную ansible_python_interpreter с указанием пути для запуска python.</em></p>
-<h2 id="ansible_2">Настройка ansible</h2>
+<h3 id="ansible_2">Настройка ansible</h3>
 <p>Открываем конфигурационный файл ansible:</p>
 <pre><code class="language-shell">vi /etc/ansible/ansible.cfg
 </code></pre>
@@ -193,7 +193,7 @@ test_servers:
 interpreter_python = auto_silent
 </code></pre>
 <p>* <em>данная опция указывает, чтобы ansible автоматически искал python на целевом хосте без показа предупреждений.</em></p>
-<h2 id="_4">Тестовый запуск</h2>
+<h3 id="_4">Тестовый запуск</h3>
 <p>Теперь выполним проверку доступности добавленных серверов:</p>
 <pre><code class="language-shell">ansible -m ping test_servers -u root -kK
 </code></pre>
