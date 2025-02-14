@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/Top/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Top - Личная документация</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Top";
+        var mkdocs_page_input_path = "Top.md";
+        var mkdocs_page_url = "/Top/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/shell.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Личная документация
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Заметки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Markdown/">Синтаксис Markdown</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Git/">Основные команды Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Инструкции</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Keycloak/">Keycloak</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Prometheus/">Prometheus</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Ansible/">Ansible</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Мониторинг</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Top</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#_1">Общая информация о системе</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">Информация по каждому процессу</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#top_1">Опции команды top</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#top_2">Горячие клавиши top</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Добавление полей</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Личная документация</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Linux</li>
+          <li class="breadcrumb-item">Мониторинг</li>
+      <li class="breadcrumb-item active">Top</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="top">Утилита top</h1>
+<p><strong>Top</strong> - это консольный диспетчер задач. Она показывает общую информацию о системе и информацию о каждом процессе. Это интерактивная утилита, то есть она постоянно обновляет данные и с ней можно взаимодействовать с помощью горячих клавиш</p>
+<p>Пример работы утилиты:
+<img alt="Вывод команды top" src="../img/top/image1.png" /></p>
+<p>Показанную информацию можно разбить на две части:</p>
+<ul>
+<li><strong>Сверху</strong> — общая информация о системе.</li>
+<li><strong>Снизу</strong> — информация по каждому процессу.</li>
+</ul>
+<h2 id="_1">Общая информация о системе</h2>
+<p>На первой строке показаны: <code>текущее время</code>, <code>uptime</code>, <code>количество активных пользователей</code>, <code>load average</code>.</p>
+<p>Вторая показывает: <code>общее количество процессов</code>, <code>количество активных процессов</code>, <code>количество спящих процессов</code>, <code>количество остановленных процессов</code>, <code>количество зомби процессов</code>.</p>
+<p>На третьей строке показана информация о потреблении ЦПУ:</p>
+<ul>
+<li><code>us</code> — потребление cpu пользовательскими процессами;</li>
+<li><code>sy</code> — потребление cpu системными процессами;</li>
+<li><code>ni</code> — потребление cpu пользовательскими процессами, c измененным приоритетом (командой nice или renice);</li>
+<li><code>id</code> — простаивание cpu;</li>
+<li><code>wa</code> — процент времени, в течение которого процессор простаивал, ожидая завершения операции ввода-вывода;</li>
+<li><code>hi</code> — процент времени работы аппаратных прерываний (периферийные устройства могут вызывать такие прерывания);</li>
+<li><code>si</code> – процент времени работы программных прерываний (некоторые приложения могут вызывать такие прерывания);</li>
+<li><code>st</code> — процент времени, когда процессор не был доступен виртуальной машине (будет расти если виртуальной машине выделить больше ядер, чем имеет гипервизор).</li>
+</ul>
+<p>Ниже видим информацию по потреблению оперативной памяти (Mem) и подкачки (Swap):</p>
+<ul>
+<li><code>total</code> — общее количество памяти;</li>
+<li><code>free</code> — количество свободной памяти;</li>
+<li><code>used</code> — количество используемой памяти;</li>
+<li><code>buff / cache</code> — память выделенная под буфер и дисковый кэш;</li>
+<li><code>avail Mem</code> — память которая может быть выделена для запуска новых процессов.</li>
+</ul>
+<h2 id="_2">Информация по каждому процессу</h2>
+<p>Внизу показана информация по каждому процессу. Информация разбита на колонки:</p>
+<p><img alt="Информация по каждому процессу" src="../img/top/image2.png" /></p>
+<ul>
+<li><code>PID</code> — номер процесса.</li>
+<li><code>USER</code> — имя пользователя под которым работает процесс.</li>
+<li><code>PR</code> — приоритет процесса.</li>
+<li><code>NI</code> — любезность процесса (чем она выше, тем ниже приоритет).</li>
+<li><code>VIR</code> — количество памяти, которое способен адресовать процесс. Включает выделенную память, которая, возможно, ещё не полностью используется.</li>
+<li><code>RES</code> — количество физической памяти (использованной а не выделенной), которую использует процесс.</li>
+<li><code>SHR</code> — количество разделяемой памяти, которую использует процесс. Разделяемая память может использоваться вместе разными процессами.</li>
+<li><code>S</code> — состояние процесса (я их уже описывал здесь):</li>
+<li><code>S</code> (sleeping) — спящий;</li>
+<li><code>R</code> (running) — в работе;</li>
+<li><code>Z</code> (zombie) — зомби;</li>
+<li><code>D</code> (uninterruptible sleep) — ожидает дискового ввода/вывода, и не принимает никакие сигналы;</li>
+<li><code>T</code> (stopped by job control signal) — остановлен специальным сигналом;</li>
+<li><code>t</code> (stopped by debugger during trace) — остановлен в процессе дебага;</li>
+<li><code>I</code> (Idle) — бездействующий поток ядра.</li>
+<li><code>%CPU</code> — использование CPU в процентах;</li>
+<li><code>%MEM</code> — использование RES в процентах;</li>
+<li><code>TIME+</code> — сколько времени этот процесс работал на ЦПУ, с точностью до сотых долей секунды;</li>
+<li><code>COMMAND</code> — с помощью какой команды запустили процесс.</li>
+</ul>
+<h2 id="top_1">Опции команды top</h2>
+<p>Опция <code>-n</code> укажет через сколько повторений нужно завершить работу <strong>top</strong>. По умолчанию чтобы выйти из <strong>top</strong> нужно нажать клавишу <code>q</code>. Следующая команда выйдет из <strong>top</strong> через 10 повторений:</p>
+<pre><code class="language-shell">top -n 10
+</code></pre>
+<p>Опция <code>-u</code> заставит top отображать процессы определенного пользователя:</p>
+<pre><code class="language-shell">top -u www-data
+</code></pre>
+<p>Опция <code>-c</code> укажет выводить не просто команды а полные командные строки со всеми параметрами.</p>
+<p>С помощью опции <code>-E</code> можно указать в каких единицах выводить память (<code>k</code>, <code>m</code>, <code>g</code>, <code>t</code>) в общей информации о системе. А также есть опция <code>-e</code>, она делает тоже самое но для вывода информации в блоке процессах. Например, пусть в верхней части у нас будут <code>GB</code>, а в нижней <code>MB</code>:</p>
+<pre><code class="language-shell">top -E g -e m
+</code></pre>
+<p>С помощью опции <code>-o</code> можно указать поле для сортировки, например:</p>
+<pre><code class="language-shell">top -o RES
+</code></pre>
+<h2 id="top_2">Горячие клавиши top</h2>
+<p>Клавиша <code>z</code> переключает режим цветности (белое на чёрном или черное на белом):</p>
+<p><img alt="вывод команды top" src="../img/top/image3.png" /></p>
+<p>Клавиша <code>с</code> заставляет показывать всю командную строку со всеми параметрами:</p>
+<p><img alt="вывод команды top" src="../img/top/image4.png" /></p>
+<p>Нажмите клавишу <code>x</code> чтобы выделить столбец, по которому сейчас идет сортировка.</p>
+<p><img alt="вывод команды top" src="../img/top/image5.png" /></p>
+<p>Клавишами <code>&lt;</code> или <code>&gt;</code>, можно выбрать столбец, по которому нужно сортировать процессы. Клавиша <code>R</code> управляет сортировкой (в нормальном или в обратном порядке). Клавиша <code>M</code> отсортирует процессы по потреблению памяти (%MEM).</p>
+<p>Нажмите клавишу <code>E</code> чтобы переключить отображение единиц измерения <strong>kB</strong>, <strong>MB</strong>, <strong>GB</strong>.</p>
+<p>После всех настроек вы возможно захотите сохранить их, чтобы в следующий раз <strong>top</strong> запустился с уже выбранными настройками. Чтобы это сделать нажмите клавишу <code>W</code>, при этом настройки будут сохранены в каталоге <code>~/.toprc</code>.</p>
+<p>Дополнительно из <strong>top</strong> можно завершить процесс, для этого нужно нажать клавишу <code>k</code>, далее ввести <code>pid</code> процесса, который мы хотим завершить и нажать <strong>Enter</strong>. По умолчанию процессу посылается сигнал <strong>15 (sigterm)</strong>.</p>
+<h2 id="_3">Добавление полей</h2>
+<p>По умолчанию отображаются далеко не все поля. Чтобы добавить поля нажмите клавишу <code>F</code>. Затем, с помощью клавиш <strong>вверх</strong> и <strong>вниз</strong>, вы можете перемещаться по полям. Чтобы добавить выбранное поле нажмите клавишу <code>d</code> или <code>пробел</code>. А чтобы выбрать поле для сортировки выделите его и нажмите клавишу <code>s</code>. Ну и чтобы вернуться в режим просмотра, нажмите клавишу <code>q</code>.</p>
+<p><img alt="вывод команды top" src="../img/top/image6.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Ansible/" class="btn btn-neutral float-left" title="Ansible"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Ansible/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
