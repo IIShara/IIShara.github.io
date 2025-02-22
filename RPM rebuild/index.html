@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/RPM%20rebild/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/RPM%20rebuild/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Пересборка RPM пакета NGINX - Личная документация</title>
+    <title>Сборка RPM - Личная документация</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "\u041f\u0435\u0440\u0435\u0441\u0431\u043e\u0440\u043a\u0430 RPM \u043f\u0430\u043a\u0435\u0442\u0430 NGINX";
-        var mkdocs_page_input_path = "RPM rebild.md";
-        var mkdocs_page_url = "/RPM%20rebild/";
+        var mkdocs_page_name = "\u0421\u0431\u043e\u0440\u043a\u0430 RPM";
+        var mkdocs_page_input_path = "RPM rebuild.md";
+        var mkdocs_page_url = "/RPM%20rebuild/";
       </script>
     
     <!--[if lt IE 9]>
@@ -60,9 +60,11 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../Ansible/">Ansible</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../GitLab/">GitLab</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Linux</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" >Мониторинг</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../Top/">Top</a>
@@ -71,35 +73,9 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Сборка пакетов</a>
-    <ul class="current">
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Пересборка RPM пакета NGINX</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#rpm_1">Процесс пересборки RPM пакетов</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#rpm-">Сборка RPM-пакета с нуля</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#rpm-nginx">Пересборка RPM пакета NGINX</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#_1">Перед началом работ необходимо установить:</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#source-nginx">Скачать source пакет Nginx</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#openssl">Доюавление openssl последней версии</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#ngx_brotli">Добавление ngx_brotli</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#ngx_brotli_1">Сборка ngx_brotli</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#nginx">Установка зависимостей для сборки nginx</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#nginx_1">Сборка nginx</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_2">Установка и проверка</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" >Сборка пакетов</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../RPM rebild.md">Пересборка RPM пакета NGINX</a>
                 </li>
     </ul>
                   </li>
@@ -118,9 +94,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Linux</li>
-          <li class="breadcrumb-item">Сборка пакетов</li>
-      <li class="breadcrumb-item active">Пересборка RPM пакета NGINX</li>
+      <li class="breadcrumb-item active">Сборка RPM</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -288,12 +262,10 @@ TLS SNI support enabled
 configure arguments: --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --modules-p                                                                                                                        ath=/usr/lib64/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/l                                                                                                                        og/nginx/error.log --http-log-path=/var/log/nginx/access.log --http-client-body-temp-p                                                                                                                        ath=/var/lib/nginx/tmp/client_body --http-proxy-temp-path=/var/lib/nginx/tmp/proxy --h                                                                                                                        ttp-fastcgi-temp-path=/var/lib/nginx/tmp/fastcgi --http-uwsgi-temp-path=/var/lib/nginx                                                                                                                        /tmp/uwsgi --http-scgi-temp-path=/var/lib/nginx/tmp/scgi --pid-path=/run/nginx.pid --l                                                                                                                        ock-path=/run/lock/subsys/nginx --user=nginx --group=nginx --with-compat --add-module=                                                                                                                        /root/ngx_brotli --with-openssl=/root/openssl-3.4.1 --with-openssl-opt=-fno-lto --with                                                                                                                        -debug --with-file-aio --with-http_addition_module --with-http_auth_request_module --w                                                                                                                        ith-http_dav_module --with-http_degradation_module --with-http_flv_module --with-http_                                                                                                                        gunzip_module --with-http_gzip_static_module --with-http_image_filter_module=dynamic -                                                                                                                        -with-http_mp4_module --with-http_perl_module=dynamic --with-http_random_index_module                                                                                                                         --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --wi                                                                                                                        th-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v                                                                                                                        2_module --with-http_xslt_module=dynamic --with-mail=dynamic --with-mail_ssl_module --                                                                                                                        with-pcre --with-pcre-jit --with-stream=dynamic --with-stream_ssl_module --with-stream                                                                                                                        _ssl_preread_module --with-threads --with-cc-opt='-O2 -flto=auto -ffat-lto-objects -fe                                                                                                                        xceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_                                                                                                                        SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fst                                                                                                                        ack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -march=x86-64-                                                                                                                        v2 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protectio                                                                                                                        n' --with-ld-opt='-Wl,-z,relro -Wl,--as-needed -Wl,-z,now -specs=/usr/lib/rpm/redhat/r                                                                                                                        edhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -Wl,-E'
 
 </code></pre>
+<h2 id="_3">Заморозить обновление пакета</h2>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../vmstat/" class="btn btn-neutral float-left" title="Vmstat"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-    </div>
 
   <hr/>
 
@@ -314,8 +286,6 @@ configure arguments: --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --mod
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
-    
-      <span><a href="../vmstat/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>

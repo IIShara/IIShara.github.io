@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ilgiz Sharafeev" /><link rel="canonical" href="https://IIShara.github.io/GitLab/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>GitLab - Личная документация</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "GitLab";
+        var mkdocs_page_input_path = "GitLab.md";
+        var mkdocs_page_url = "/GitLab/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/shell.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Личная документация
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Заметки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Markdown/">Синтаксис Markdown</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Git/">Основные команды Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Инструкции</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Keycloak/">Keycloak</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Prometheus/">Prometheus</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Ansible/">Ansible</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">GitLab</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#docker-composeyml">Создаем файл docker-compose.yml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datadockernginxconfdgitlabconf-gitlab">Создаем ./data/docker/nginx/conf.d/gitlab.conf для GitLab</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configconfigtoml-gitlab-runner">Редактируем файл конфигурации ./config/config.toml gitlab runner</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gitlab">Получение токена из Gitlab</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Запуск контейнеров</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Проверка доступности</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Мониторинг</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../Top/">Top</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../vmstat/">Vmstat</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Сборка пакетов</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../RPM rebild.md">Пересборка RPM пакета NGINX</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Личная документация</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Инструкции</li>
+      <li class="breadcrumb-item active">GitLab</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="gitlab-gitlab-runner-docker-compose">Установка GitLab + GitLab Runner в Docker compose</h1>
+<h2 id="docker-composeyml">Создаем файл docker-compose.yml</h2>
+<pre><code class="language-bash">version: &quot;3.9&quot;
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:17.8.0-ce.0
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.local'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'http://gitlab.local'  # Адрес по которому будет доступен пшедфи
+        registry_external_url 'http://registry-gitlab.local'
+        registry_nginx['redirect_http_to_https'] = true
+        registry_nginx['listen_port'] = 5050
+        gitlab_rails['gitlab_shell_ssh_port'] = 2424
+        gitlab_rails['initial_root_password'] = 'P@ssw0rd' # Первоначальный пароль пользователя root
+        gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/0', '0.0.0.0\0']
+        node_exporter['listen_address'] = '0.0.0.0:9100'
+        gitlab_workhorse['prometheus_listen_addr'] = &quot;0.0.0.0:9229&quot;
+
+        # Rails nodes
+        gitlab_exporter['listen_address'] = '0.0.0.0'
+        gitlab_exporter['listen_port'] = '9168'
+        registry['debug_addr'] = '0.0.0.0:5001'
+
+        # Sidekiq nodes
+        sidekiq['listen_address'] = '0.0.0.0'
+
+        # Redis nodes
+        redis_exporter['listen_address'] = '0.0.0.0:9121'
+
+        # PostgreSQL nodes
+        postgres_exporter['listen_address'] = '0.0.0.0:9187'
+
+        # Pgbouncer nodes
+        pgbouncer_exporter['listen_address'] = '0.0.0.0:9188'
+        gitlab_rails['prometheus_address'] = 'prometheus:9090'
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+    ports:
+      - '8080:80'
+      - '8443:443'
+      - '2424:22'
+    volumes:
+      - './data/docker/gitlab/etc/gitlab:/etc/gitlab'
+      - './data/docker/gitlab/var/opt/gitlab:/var/log/gitlab'
+      - './data/docker/gitlab/var/log/gitlab:/var/opt/gitlab'
+    shm_size: '256m'
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    container_name: gitlab_runner
+    restart: always
+    volumes:
+      - ./config/:/etc/gitlab-runner/
+      - /var/run/docker.sock:/var/run/docker.sock  
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./data/docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./data/docker/nginx/var/log/nginx/:/var/log/nginx/
+
+</code></pre>
+<h2 id="datadockernginxconfdgitlabconf-gitlab">Создаем ./data/docker/nginx/conf.d/gitlab.conf для GitLab</h2>
+<pre><code>server {
+    listen       80;
+    server_name  gitlab.local;
+
+    location / {
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+
+        proxy_pass                  http://gitlab:80;
+        proxy_read_timeout     90;
+    }
+
+    error_log   /var/log/nginx/gitlab_local.log error;
+    access_log  /var/log/nginx/gitlab_local_access.log;
+
+</code></pre>
+<h2 id="configconfigtoml-gitlab-runner">Редактируем файл конфигурации <code>./config/config.toml</code> gitlab runner</h2>
+<pre><code class="language-bash">concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = &quot;name of your runner&quot;
+  url = &quot;http://gitlab:80/&quot;               #`gitlab` - имя контейнера gitlab
+  token = &quot;glrt-t1_APdyNsCknty2zuHGB62w&quot;  # Токен из gitlab
+  executor = &quot;docker&quot;
+  [runners.custom_build_dir]
+  [runners.docker]
+    tls_verify = false
+    image = &quot;kmbn/docker-compose&quot;
+    privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = [&quot;/var/run/docker.sock:/var/run/docker.sock&quot;, &quot;/cache&quot;]
+    shm_size = 0
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+
+</code></pre>
+<p>Важные части: <code>executor = "docker"</code>, <code>image = "kmbn/docker-compose</code>(образ, включающий Docker и docker-compose только для использования в конвейерах GitLab CI/CD), и <code>volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]</code>(для совместного использования сокета Docker)</p>
+<h2 id="gitlab">Получение токена из Gitlab</h2>
+<ol>
+<li>Переходим в <code>CI/CD/Runners</code></li>
+<li>Создаем новый runner <code>New instance runner</code></li>
+<li>Скопировать токен</li>
+</ol>
+<p><img alt="" src="img/gitlab_token.png" /></p>
+<h2 id="_1">Запуск контейнеров</h2>
+<pre><code>docker compose up -d
+</code></pre>
+<h2 id="_2">Проверка доступности</h2>
+<ol>
+<li>Gitlab будет доступен по адресу <code>http://gitlab.local</code></li>
+</ol>
+<p><img alt="" src="../img/gitlab/gitlab_auth.png" /></p>
+<ol>
+<li>В списке раннеров будет 1 runner в статусе <code>Online</code></li>
+</ol>
+<p><img alt="" src="../img/gitlab/runner_list.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Ansible/" class="btn btn-neutral float-left" title="Ansible"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Top/" class="btn btn-neutral float-right" title="Top">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Ansible/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Top/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
